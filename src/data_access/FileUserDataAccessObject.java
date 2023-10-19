@@ -9,6 +9,7 @@ import use_case.signup.SignupUserDataAccessInterface;
 import java.io.*;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class FileUserDataAccessObject
         implements SignupUserDataAccessInterface, LoginUserDataAccessInterface, ClearUserDataAccessInterface {
@@ -97,8 +98,9 @@ public class FileUserDataAccessObject
     }
 
     @Override
-    public List<User> extractUsers() {
+    public List<String> extractUsers() {
         List<User> formerUsers = new ArrayList<>(accounts.values());
+//         List<String> formerUsernames = new ArrayList(accounts.keySet());
         accounts.clear();
         BufferedWriter writer;
         try {
@@ -109,8 +111,9 @@ public class FileUserDataAccessObject
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("IOException occured, check files");
+            System.out.println("IOException occurred, check files");
         }
-        return formerUsers;
+        return formerUsers.stream().map(User::getName).collect(Collectors.toList());
+        // return formerUsernames;
     }
 }

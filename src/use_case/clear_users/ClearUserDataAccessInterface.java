@@ -6,5 +6,5 @@ import entity.User;
 import java.util.List;
 
 public interface ClearUserDataAccessInterface {
-    List<User> extractUsers();
+    List<String> extractUsers();
 }

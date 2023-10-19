@@ -16,11 +16,11 @@ public class ClearInteractor implements ClearInputBoundary {
 
     @Override
     public void execute() {
-        List<User> users = userDataAccessObject.extractUsers();
+        List<String> usernames = userDataAccessObject.extractUsers();
         String result = "";
 
-        for (User user : users) {
-            result += user.getName() + "\n";
+        for (String username : usernames) {
+            result += username + "\n";
         }
 
         ClearOutputData clearOutputData = new ClearOutputData(result);
